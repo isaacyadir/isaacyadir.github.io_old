@@ -3,7 +3,7 @@
 
 # Personal Website - Isaac Gonzalez
 
-Here you can find the source code of my personal website [isaacyadir.github.io](https://juanitorduz.github.io/). 
+Here you can find the source code of my personal website [isaacyadir.github.io](https://isaacyadir.github.io/). 
 - The source code of notebooks and scripts can be found on the [Website Projects Repository](https://github.com/isaacyadir/website_projects).
 - This website is built using [blogdown](https://github.com/rstudio/blogdown) with the [Hugo Lithium](https://github.com/yihui/hugo-lithium) theme.
 
