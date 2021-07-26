@@ -7,8 +7,8 @@
 <meta name="generator" content="Hugo 0.79.1" />
 
 
-<title>Forecasting Weekly Data with Prophet - Dr. Juan Camilo Orduz</title>
-<meta property="og:title" content="Forecasting Weekly Data with Prophet - Dr. Juan Camilo Orduz">
+<title>Deep Learning for Time Series Forecasting - Isaac Gonzalez</title>
+<meta property="og:title" content="Deep Learning for Time Series Forecasting - Isaac Gonzalez">
 
 
   <link href='../images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -48,12 +48,14 @@
   <ul class="nav-links">
     
     <li><a href="../about/"> About</a></li>
+
+    <li><a href="https://isaacyadir.github.io/"> Blog</a></li>
+	  
+    <li><a href="../cv/"> CV</a></li>
     
-    <li><a href="https://github.com/juanitorduz"><i class='fab fa-github fa-2x'></i>  </a></li>
+    <li><a href="https://github.com/isaacyadir"><i class='fab fa-github fa-2x'></i>  </a></li>
     
-    <li><a href="https://www.linkedin.com/in/juanitorduz/"><i class='fab fa-linkedin fa-2x' style='color:#0077B5;'></i>  </a></li>
-    
-    <li><a href="https://twitter.com/juanitorduz"><i class='fab fa-twitter fa-2x' style='color:#1DA1F2;'></i>  </a></li>
+    <li><a href="https://www.linkedin.com/in/isaac--gonzalez/"><i class='fab fa-linkedin fa-2x' style='color:#0077B5;'></i>  </a></li>
     
   </ul>
 </nav>
@@ -65,38 +67,37 @@
 
   <article class="article">
     
-    <span class="article-duration">14 min read</span>
+    <span class="article-duration">10 min read</span>
     
 
-    <h1 class="article-title">Forecasting Weekly Data with Prophet</h1>
+    <h1 class="article-title">Deep Learning for Time Series Forecasting</h1>
 
     
-    <span class="article-date">2020-02-21</span>
+    <span class="article-date">2021-07-26</span>
     
 
     <div class="article-content">
       
 
 
-<p>In this notebook we are present an initial exploration of the <a href="https://facebook.github.io/prophet/">Prophet</a> package by <a href="https://opensource.facebook.com/">Facebook</a>. From the documentation:</p>
-<p><em>Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>There is an accompanying paper <a href="https://peerj.com/preprints/3190.pdf">Forecasting at scale</a> which is quite accessible (of, course the devil is hidden in the details!). In addition, the <a href="https://facebook.github.io/prophet/docs/quick_start.html">Quick Start Guide</a> is very informative and provides enough information to get a first good impression of the package. There is a R and a Python API.</p>
+<p>This study presents an initial exploration of time series forecasting using deep learning. Time series forecasting is a field within machine learning that is widely to predict non-stationary data (e.g. economic, weather and stock price data). This blog post aims to forecast future retail sales. All data can be found <a href="https://community.tableau.com/docs/DOC-1236">here</a>. Let’s get started!
 <div id="prepare-notebook" class="section level2">
 <h2>Prepare Notebook</h2>
-<pre class="python"><code>import numpy as np
+<pre class="python"><code>#import packages
+import warnings
+import numpy as np
 import pandas as pd
-from fbprophet import Prophet
-
+import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style(&#39;darkgrid&#39;, {&#39;axes.facecolor&#39;: &#39;.9&#39;})
-sns.set_palette(palette=&#39;deep&#39;)
-sns_c = sns.color_palette(palette=&#39;deep&#39;)
-%matplotlib inline
+warnings.filterwarnings("ignore")
+from keras.preprocessing.sequence import TimeseriesGenerator
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM
 
-from pandas.plotting import register_matplotlib_converters
-register_matplotlib_converters()</code></pre>
-<p><strong>Warning:</strong> At the time of writing this post I encounter a problem when importing <code>fbprophet</code>, see the <a href="https://github.com/facebook/prophet/issues/1293">issue</a> on GitHub. The (partial) solution is given on the thread. The problem as in the structure change of the <a href="https://pypi.org/project/holidays/"><code>holidays</code></a> package.</p>
+#import data
+df = pd.read_excel(https://raw.githubusercontent.com/isaacyadir.github.io/data/Superstore.xls)
+df.head()
 </div>
 <div id="brief-model-description" class="section level2">
 <h2>Brief Model Description</h2>
