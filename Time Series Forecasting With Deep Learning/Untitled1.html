@@ -1,8 +1,98 @@
+  
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" />
+<html lang="en-us">
+  <head>
+    <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.79.1" />
 
-<title>Untitled1</title>
+
+<title>GLM in PyMC3: Out-Of-Sample Predictions - Dr. Juan Camilo Orduz</title>
+<meta property="og:title" content="GLM in PyMC3: Out-Of-Sample Predictions - Dr. Juan Camilo Orduz">
+
+
+  <link href='../images/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../css/fonts.css" media="all">
+<link rel="stylesheet" href="../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../" class="nav-logo">
+    <img src="../images/sphere2.gif"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../about/"> About</a></li>
+    
+    <li><a href="https://github.com/juanitorduz"><i class='fab fa-github fa-2x'></i>  </a></li>
+    
+    <li><a href="https://www.linkedin.com/in/juanitorduz/"><i class='fab fa-linkedin fa-2x' style='color:#0077B5;'></i>  </a></li>
+    
+    <li><a href="https://twitter.com/juanitorduz"><i class='fab fa-twitter fa-2x' style='color:#1DA1F2;'></i>  </a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">8 min read</span>
+    
+
+    <h1 class="article-title">GLM in PyMC3: Out-Of-Sample Predictions</h1>
+
+    
+    <span class="article-date">2021-01-04</span>
+    
+
+    <div class="article-content">
+      
+<script src="../rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>In this notebook I explore the <a href="https://docs.pymc.io/api/glm.html">glm</a> module of <a href="https://docs.pymc.io/">PyMC3</a>. I am particularly interested in the model definition using <a href="https://patsy.readthedocs.io/en/latest/">patsy</a> formulas, as it makes the model evaluation loop faster (easier to include features and/or interactions). There are many good resources on this subject, but most of them evaluate the model in-sample. For many applications we require doing predictions on out-of-sample data. This experiment was motivated by the discussion of the thread <a href="https://discourse.pymc.io/t/out-of-sample-predictions-with-the-glm-sub-module/773">“Out of sample” predictions with the GLM sub-module</a> on the (great!) forum <a href="https://discourse.pymc.io/">discourse.pymc.io/</a>, thank you all for your input!</p>
+<p><strong>Resources</strong></p>
+<ul>
+<li><p><a href="https://docs.pymc.io/nb_examples/index.html">PyMC3 Docs: Example Notebooks</a></p>
+<ul>
+<li>In particular check <a href="https://docs.pymc.io/notebooks/GLM-logistic.html">GLM: Logistic Regression</a></li>
+</ul></li>
+<li><p><a href="https://bambinos.github.io/bambi/">Bambi</a>, a more complete implementation of the GLM submodule which also allows for mixed-effects models.</p></li>
+<li><p><a href="https://github.com/aloctavodia/BAP/blob/master/code/Chp4/04_Generalizing_linear_models.ipynb">Bayesian Analysis with Python (Second edition) - Chapter 4</a></p></li>
+<li><p><a href="https://xcelab.net/rm/statistical-rethinking/">Statistical Rethinking</a></p></li>
+</ul>
+<p><strong>Acknowledgement:</strong> I would like to thank the <a href="https://github.com/pymc-devs">pymc-devs</a> team for their support and valuable input refining the initial version of this post.</p>
+<div id="prepare-notebook" class="section level2">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
