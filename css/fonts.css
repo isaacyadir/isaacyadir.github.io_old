@@ -10,7 +10,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'),
+  src: local('Roboto Regular'), local('Roboto-Regular'),
        url('../fonts/roboto-v27-latin-regular.woff2') format('woff2'),
        url('../fonts/roboto-v27-latin-regular.woff') format('woff');
 }
@@ -26,5 +26,5 @@ body {
   font-family: 'Lato', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, .nav, .article-duration, .archive-item-link, .footer, .code {
-  font-family: 'Merriweather', Serif;
+  font-family: 'Roboto', Sans-serif;
 }
