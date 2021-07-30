@@ -26,8 +26,25 @@
        url('../fonts/lato-v11-latin-regular.woff2') format('woff2'),
        url('../fonts/lato-v11-latin-regular.woff') format('woff');
 }
+/* lato-300 - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/lato-v17-latin-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/lato-v17-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/lato-v17-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/lato-v17-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/lato-v17-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/lato-v17-latin-300.svg#Lato') format('svg'); /* Legacy iOS */
+}
 body {
   font-family: 'Lato', sans-serif;
+}
+}
+body {
+  font-weight: 300;
 }
 h1, h2, h3, h4, h5, h6, .nav, .article-duration, .archive-item-link, .footer, .code {
   font-family: 'Lato', sans-serif;
