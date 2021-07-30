@@ -325,18 +325,3 @@ blockquote {
     box-shadow: none;
   }
 }
-@media(min-width:768px) {
-    nav {
-        visibility: visible;
-    }
-
-    /* Change if height of navigation changes. */
-    .anchor {
-        padding-top: 70px;
-        margin-top: -70px;
-    }
-
-    aside {
-        margin-top: 50px;
-    }
-}
